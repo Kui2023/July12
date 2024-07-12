@@ -24,9 +24,9 @@ if uploaded_file is not None:
 })
 
     
-#num_rows = st.number_input('Enter the number of rows to display', 
+num_rows = st.number_input('Enter the number of rows to display', 
                             min_value=0, max_value=30, value=5)
-num_rows = st.slider("Number of rows to display:", min_value=0, max_value=30, value=5)   
+#num_rows = st.slider("Number of rows to display:", min_value=0, max_value=30, value=5)
 
 st.header("Data Sample")
 
