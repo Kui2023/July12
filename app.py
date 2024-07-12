@@ -18,12 +18,18 @@ uploaded_file = st.file_uploader("Upload your input CSV file",
                                  type=["csv"])
 
 if uploaded_file is not None:
-   data = pd.read_csv(uploaded_file)
+   data = pd.read_csv(uploaded_file{
+    'Column1': range(10),
+    'Column2': range(10, 20)
+})
+
     
-num_rows = st.number_input('Enter the number of rows to display', 
+#num_rows = st.number_input('Enter the number of rows to display', 
                             min_value=0, max_value=30, value=5)
-    
+num_rows = st.slider("Number of rows to display:", min_value=0, max_value=30, value=5)   
+
 st.header("Data Sample")
+
 st.dataframe(data.head(num_rows))
 
 def plot_cat(data, cat_var):
