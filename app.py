@@ -16,10 +16,8 @@ st.title('Employee Perfomance Prediction')
 
 uploaded_file = st.file_uploader("Upload your input CSV file", 
                                  type=["csv"])
-data = pd.read_csv(uploaded_file)
 
 if uploaded_file is not None:
-
    data = pd.read_csv(uploaded_file)
     
 num_rows = st.number_input('Enter the number of rows to display', 
