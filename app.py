@@ -59,7 +59,15 @@ st.dataframe(data.head(3))
 X = data.drop(columns=['PerformanceRating'])
 
 
-model = RandomForestClassifier()
+model = RandomForestClassifier(
+             n_estimators= 1135,
+            min_samples_split= 10,
+             min_samples_leaf= 1,
+             max_features= 'auto',
+             max_depth= 10,
+             criterion= 'gini',
+             bootstrap= False
+             )
 model.fit(X, data['PerformanceRating'])
 
 
