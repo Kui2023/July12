@@ -33,4 +33,7 @@ def plot_cat(data, cat_var):
     plt.title(cat_var)
     plt.show()
     st.pyplot(fig)
+columns = data.columns.tolist()
+cat_var = st.selectbox('Select a column to plot', columns)
+
 
