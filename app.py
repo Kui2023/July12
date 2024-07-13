@@ -41,6 +41,9 @@ def encode_cat(data, cat_var):
     encoder = OrdinalEncoder()
     data[cat_var] = encoder.fit_transform(data[[cat_var]])
     return data
+for i in data.columns:
+    if data[i].dtypes == 'object':
+        encode_cat(data, i)
 
 
 
