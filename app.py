@@ -56,7 +56,9 @@ model = RandomForestClassifier(
              criterion= 'gini',
              bootstrap= False
              )
-
+model.fit(X, data['PerformanceRating'])
+# make predictions using the model
+prediction = model.predict(X)
 
 
 
