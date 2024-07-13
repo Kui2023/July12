@@ -18,7 +18,7 @@ uploaded_file = st.file_uploader("Upload your input CSV file",
                                  type=["csv"])
 
 if uploaded_file is not None:
-data = pd.read_csv(uploaded_file)
+   df = pd.read_csv(uploaded_file)
    
     
     
@@ -28,38 +28,38 @@ num_rows = st.number_input('Enter the number of rows to display',
 
 st.header("Data Sample")
 
-st.dataframe(data.head(num_rows))
+st.dataframe(df.head(num_rows))
 
-def plot_cat(data, cat_var):
+def plot_cat(df, cat_var):
     st.header("Plot of " + cat_var)
     fig, ax = plt.subplots()
     sns.set_style('darkgrid')
-    sns.countplot(data=data, x=cat_var)
+    sns.countplot(data=df, x=cat_var)
     plt.title(cat_var)
     plt.show()
     st.pyplot(fig)
 
-columns = data.columns.tolist()
+columns = df.columns.tolist()
 
 cat_var = st.selectbox('Select a column to plot', columns)
 
-plot_cat(data, cat_var)
+plot_cat(df, cat_var)
 
-def encode_cat(data, cat_var):
+def encode_cat(df, cat_var):
     encoder = OrdinalEncoder()
-    data[cat_var] = encoder.fit_transform(data[[cat_var]])
+    df[cat_var] = encoder.fit_transform(df[[cat_var]])
     return data
 
-for i in data.columns:
-    if data[i].dtypes == 'object':
-        encode_cat(data, i)
+for i in df.columns:
+    if df[i].dtypes == 'object':
+        encode_cat(df, i)
 
 
 st.header("Data Encoded Dataframe Sample")
-st.dataframe(data.head(3))
+st.dataframe(df.head(3))
 
 
-X = data.drop(columns=['PerformanceRating'])
+X = df.drop(columns=['PerformanceRating'])
 
 
 model = RandomForestClassifier(
@@ -71,7 +71,7 @@ model = RandomForestClassifier(
              criterion= 'gini',
              bootstrap= False
              )
-model.fit(X, data['PerformanceRating'])
+model.fit(X, df['PerformanceRating'])
 
 
 prediction = model.predict(X)
@@ -83,7 +83,7 @@ num_rows_pred = st.number_input('Enter the number of rows to display',
                             min_value=0, max_value=50, value=5)
 
 st.header("Predictions")
-st.dataframe(data.head(num_rows_pred))
+st.dataframe(df.head(num_rows_pred))
 
 
 st.header("Classification Report")
