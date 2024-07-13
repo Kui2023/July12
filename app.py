@@ -59,6 +59,21 @@ model = RandomForestClassifier(
 model.fit(X, data['PerformanceRating'])
 # make predictions using the model
 prediction = model.predict(X)
+data['PerformanceRating_prediction'] = prediction
+
+num_rows_pred = st.number_input('Enter the number of rows to display', 
+                            min_value=0, max_value=50, value=5)
+
+st.header("Predictions")
+st.dataframe(data.head(num_rows_pred))
+
+
+st.header("Classification Report")
+st.text("1 = Low, 2 = Good , 3 = Better , 4 = Very High")
+
+class_report = classification_report(data['PerformanceRating'],
+                                    data['PerformanceRating_prediction'])
+st.text(class_report)
 
 
 
