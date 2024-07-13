@@ -56,7 +56,7 @@ model = RandomForestClassifier(
              criterion= 'gini',
              bootstrap= False
              )
-model.fit(X, data['PerformanceRating'])
+
 
 
 
