@@ -21,3 +21,5 @@ if  uploaded_file is not None:
     #st.dataframe(data.head(num_rows))
 else:
     st.warning("No data to display.") 
+  num_rows = st.number_input('Enter the number of rows to display', 
+                            min_value=0, max_value=30, value=5)
