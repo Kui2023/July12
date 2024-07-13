@@ -25,3 +25,12 @@ num_rows = st.number_input('Enter the number of rows to display',
                             min_value=0, max_value=30, value=5)
 st.header("Data Sample")
 st.dataframe(data.head(num_rows))
+def plot_cat(data, cat_var):
+    st.header("Plot of " + cat_var)
+    fig, ax = plt.subplots()
+    sns.set_style('darkgrid')
+    sns.countplot(data=data, x=cat_var)
+    plt.title(cat_var)
+    plt.show()
+    st.pyplot(fig)
+
