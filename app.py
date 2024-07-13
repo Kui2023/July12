@@ -45,7 +45,19 @@ for i in data.columns:
     if data[i].dtypes == 'object':
         encode_cat(data, i)
 st.header("Data Encoded Dataframe Sample")
-st.dataframe(data.head(3))
+st.dataframe(data.head(5))
+X = data.drop(columns=['PerformanceRating'])
+model = RandomForestClassifier(
+             n_estimators= 1135,
+             min_samples_split= 10,
+             min_samples_leaf= 1,
+             max_features= 'auto',
+             max_depth= 10,
+             criterion= 'gini',
+             bootstrap= False
+             )
+model.fit(X, data['PerformanceRating'])
+
 
 
 
