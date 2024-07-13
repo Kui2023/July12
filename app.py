@@ -15,3 +15,8 @@ warnings.filterwarnings('ignore')
 st.title('Employee Perfomance Prediction')
 uploaded_file = st.file_uploader("Upload your input CSV file", 
                                  type=["csv"])
+try:
+    data = pd.read_csv(uploaded_file)
+except FileNotFoundError:
+    st.error("File not found. Please check the file path.")
+    data = None
