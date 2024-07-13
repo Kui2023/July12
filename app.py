@@ -44,6 +44,9 @@ def encode_cat(data, cat_var):
 for i in data.columns:
     if data[i].dtypes == 'object':
         encode_cat(data, i)
+st.header("Data Encoded Dataframe Sample")
+st.dataframe(data.head(3))
+
 
 
 
