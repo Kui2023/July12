@@ -26,6 +26,7 @@ except FileNotFoundError:
 
 
 if  uploaded_file is not None:
+    st.dataframe(data.head(num_rows))
     #data = pd.read_csv(uploaded_file)
 else:
     st.warning("No data to display.")  
