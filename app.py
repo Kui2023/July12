@@ -17,9 +17,18 @@ st.title('Employee Perfomance Prediction')
 uploaded_file = st.file_uploader("Upload your input CSV file", 
                                  type=["csv"])
 
-if uploaded_file is not None:
-   df = pd.read_csv(uploaded_file)
-   
+try:
+    data = pd.read_csv(uploaded_file)
+except FileNotFoundError:
+    st.error("File not found. Please check the file path.")
+    data = None
+
+
+
+if  uploaded_file is not None:
+    #data = pd.read_csv(uploaded_file)
+else:
+    st.warning("No data to display.")  
     
     
 num_rows = st.number_input('Enter the number of rows to display', 
@@ -28,50 +37,50 @@ num_rows = st.number_input('Enter the number of rows to display',
 
 st.header("Data Sample")
 
-st.dataframe(df.head(num_rows))
+st.dataframe(data.head(num_rows))
 
-def plot_cat(df, cat_var):
+def plot_cat(data, cat_var):
     st.header("Plot of " + cat_var)
     fig, ax = plt.subplots()
     sns.set_style('darkgrid')
-    sns.countplot(data=df, x=cat_var)
+    sns.countplot(data=data, x=cat_var)
     plt.title(cat_var)
     plt.show()
     st.pyplot(fig)
 
-columns = df.columns.tolist()
+columns = data.columns.tolist()
 
 cat_var = st.selectbox('Select a column to plot', columns)
 
-plot_cat(df, cat_var)
+plot_cat(data, cat_var)
 
-def encode_cat(df, cat_var):
+def encode_cat(data, cat_var):
     encoder = OrdinalEncoder()
-    df[cat_var] = encoder.fit_transform(df[[cat_var]])
+    data[cat_var] = encoder.fit_transform(data[[cat_var]])
     return df
 
-for i in df.columns:
-    if df[i].dtypes == 'object':
-        encode_cat(df, i)
+for i in data.columns:
+    if data[i].dtypes == 'object':
+        encode_cat(data, i)
 
 
 st.header("Data Encoded Dataframe Sample")
-st.dataframe(df.head(3))
+st.dataframe(data.head(3))
 
 
-X = df.drop(columns=['PerformanceRating'])
+X = data.drop(columns=['PerformanceRating'])
 
 
 model = RandomForestClassifier(
              n_estimators= 1135,
-            min_samples_split= 10,
+             min_samples_split= 10,
              min_samples_leaf= 1,
              max_features= 'auto',
              max_depth= 10,
              criterion= 'gini',
              bootstrap= False
              )
-model.fit(X, df['PerformanceRating'])
+model.fit(X, data['PerformanceRating'])
 
 
 prediction = model.predict(X)
@@ -83,7 +92,7 @@ num_rows_pred = st.number_input('Enter the number of rows to display',
                             min_value=0, max_value=50, value=5)
 
 st.header("Predictions")
-st.dataframe(df.head(num_rows_pred))
+st.dataframe(data.head(num_rows_pred))
 
 
 st.header("Classification Report")
