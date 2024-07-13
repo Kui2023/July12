@@ -35,5 +35,12 @@ def plot_cat(data, cat_var):
     st.pyplot(fig)
 columns = data.columns.tolist()
 cat_var = st.selectbox('Select a column to plot', columns)
+plot_cat(data, cat_var)
+
+def encode_cat(data, cat_var):
+    encoder = OrdinalEncoder()
+    data[cat_var] = encoder.fit_transform(data[[cat_var]])
+    return data
+
 
 
