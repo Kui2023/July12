@@ -48,7 +48,7 @@ plot_cat(df, cat_var)
 def encode_cat(df, cat_var):
     encoder = OrdinalEncoder()
     df[cat_var] = encoder.fit_transform(df[[cat_var]])
-    return data
+    return df
 
 for i in df.columns:
     if df[i].dtypes == 'object':
