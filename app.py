@@ -13,4 +13,5 @@ import warnings
 warnings.filterwarnings('ignore')
 
 st.title('Employee Perfomance Prediction')
-
+uploaded_file = st.file_uploader("Upload your input CSV file", 
+                                 type=["csv"])
