@@ -46,6 +46,18 @@ for i in data.columns:
         encode_cat(data, i)
 st.header("Data Encoded Dataframe Sample")
 st.dataframe(data.head(5))
+
+#performance rating by department
+st.header("Performance Rating by Department")
+sns.barplot( x="EmpDepartment", y ="PerformanceRating" ,data=df,palette="Set2" )
+plt.title("Performance Rating by Department")
+plt.show()
+st.pyplot(fig)
+
+
+
+
+
 X = data.drop(columns=['PerformanceRating'])
 model = RandomForestClassifier(
              n_estimators= 1135,
