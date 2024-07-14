@@ -49,7 +49,7 @@ st.dataframe(data.head(5))
 
 #performance rating by department
 st.header("Performance Rating by Department")
-sns.barplot( x="EmpDepartment", y ="PerformanceRating" ,data=df,palette="Set2" )
+sns.barplot( x="EmpDepartment", y ="PerformanceRating" ,data=data,palette="Set2" )
 plt.title("Performance Rating by Department")
 plt.show()
 st.pyplot(fig)
