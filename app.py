@@ -67,10 +67,9 @@ num_rows_pred = st.number_input('Enter the number of rows to display',
 st.header("Predictions")
 st.dataframe(data.head(num_rows_pred))
 
-
-st.header("Classification Report")
 st.text("Performance Ratings: 1 = Low, 2 = Good , 3 = Better , 4 = Very High")
 
+st.header("Classification Report")
 class_report = classification_report(data['PerformanceRating'],
                                     data['PerformanceRating_prediction'])
 st.text(class_report)
