@@ -69,7 +69,7 @@ st.dataframe(data.head(num_rows_pred))
 
 
 st.header("Classification Report")
-st.text("1 = Low, 2 = Good , 3 = Better , 4 = Very High")
+st.text("Performance Ratings: 1 = Low, 2 = Good , 3 = Better , 4 = Very High")
 
 class_report = classification_report(data['PerformanceRating'],
                                     data['PerformanceRating_prediction'])
