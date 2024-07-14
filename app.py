@@ -54,7 +54,7 @@ sns.barplot( x="EmpDepartment", y ="PerformanceRating" ,data=data,palette="Set2"
 plt.title("Performance Rating by Department")
 plt.show()
 st.pyplot(fig)
-
+st.text("Departments: 0 = Data Science, 1= Research & Development, 2 = Finance, 3 = Human Resources, 4 = Sales")
 
 
 
